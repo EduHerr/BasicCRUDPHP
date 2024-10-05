@@ -5,6 +5,14 @@ use App\Controller\VentaController;
 // Obtener la URL solicitada
 $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $requestMethod = $_SERVER['REQUEST_METHOD'];
+// Permitir solicitudes desde cualquier origen
+header("Access-Control-Allow-Origin: http://localhost");
+
+// Permitir ciertos métodos HTTP
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
+
+// Permitir ciertos encabezados en la solicitud
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
 // Instanciar el controlador
 $controller = new VentaController();

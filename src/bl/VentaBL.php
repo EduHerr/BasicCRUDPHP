@@ -11,7 +11,7 @@ class VentaBL{
             throw new Exception('Nombre no puede ir vacio');
         }
         
-        if(!preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\u00f1\u00d1\s.,\-#]+$/', $sale->nombre)){
+        if(!preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/', $sale->nombre)){
             throw new Exception('Nombre solo admite caracteres alfabeticos');
         }
 
@@ -20,7 +20,7 @@ class VentaBL{
             throw new Exception('Nombre no puede ir vacio');
         }
         
-        if(!preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\u00f1\u00d1\s.,\-#]+$/', $sale->apellidoPaterno)){
+        if(!preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/', $sale->apellidoPaterno)){
             throw new Exception('Apellido paterno solo admite caracteres alfabeticos');
         }
 
@@ -29,7 +29,7 @@ class VentaBL{
             throw new Exception('Apellido materno no puede ir vacio');
         }
         
-        if(!preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\u00f1\u00d1\s.,\-#]+$/', $sale->apellidoMaterno)){
+        if(!preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/', $sale->apellidoMaterno)){
             throw new Exception('Apellido materno solo admite caracteres alfabeticos');
         }
 
@@ -70,7 +70,7 @@ class VentaBL{
             throw new Exception('Codigo postal no puede ir vacio');
         }
 
-        if(!preg_match('/^\d{5}$/', $sale->celular)){
+        if(!preg_match('/^\d{5}$/', $sale->codigoPostal)){
             throw new Exception('Codigo postal solo acepta numeros y debe de estar compuesto por 5 digitos');
         }
 
@@ -97,7 +97,7 @@ class VentaBL{
             throw new Exception('Ciudad no puede ir vacio');
         }
 
-        if(!preg_match('/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.,#-]{3,50}+$/', $sale->ciudad)){
+        if(!preg_match('/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.,#\-\s]{3,50}$/', $sale->ciudad)){
             throw new Exception('Ciudad solo acepta datos alfanumericos y los siguientes caracteres especiales [, . # -]');
         }
 
@@ -106,17 +106,8 @@ class VentaBL{
             throw new Exception('Estado no puede ir vacio');
         }
 
-        if(!preg_match('/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.,#-]{3,50}+$/', $sale->estado)){
+        if(!preg_match('/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.,#\-\s]{3,50}$/', $sale->estado)){
             throw new Exception('Estado solo acepta datos alfanumericos y los siguientes caracteres especiales [, . # -]');
-        }
-
-        /* $pais */
-        if(empty($sale->pais)){
-            throw new Exception('Pais no puede ir vacio');
-        }
-
-        if(!preg_match('/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.,#-]{3,50}+$/', $sale->pais)){
-            throw new Exception('Pais solo acepta datos alfanumericos y los siguientes caracteres especiales [, . # -]');
         }
 
         /* $noExterior */
@@ -130,28 +121,11 @@ class VentaBL{
 
         /* $productosFavoritos */
         if(empty($sale->productosFavoritos)){
-            throw new Exception('Productos no puede ir vacio');
+            throw new Exception('Producto favorito no puede ir vacio');
         }
 
-        if(!is_array($sale->productosFavoritos)){
-            throw new Exception('Productos favoritos debe de ser un arreglo de objetos');
-        }
-
-        foreach($sale->productosFavoritos as $product){
-            //Verificar que cumpla con el formato
-            if (!isset($product['nombre']) || !isset($product['precio'])) {
-                throw new Exception('Cada producto favorito debe tener un nombre y un precio.');
-            }
-
-            //Validar Producto.nombre
-            if(!preg_match('/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\u00f1\u00d1\s.,\-#]+$/', $product['nombre'])){
-                throw new Exception('Producto.nombre debe de contener datos alfanumericos');
-            }
-
-            //Validar Producto.precio
-            if (!preg_match('/^\d+(\.\d{1,2})?$/', $product['precio'])) {
-                throw new Exception('Producto.precio solo permite datos numericos con dos decimales');
-            }
+        if(!preg_match('/^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ.,#-]{2,50}+$/', $sale->productosFavoritos)){
+            throw new Exception('Producto favorito solo admite valores alfanumericos');
         }
 
         /* $beneficioElegido */

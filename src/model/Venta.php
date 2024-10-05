@@ -15,7 +15,6 @@ class Venta {
     public $colonia;
     public $ciudad;
     public $estado;
-    public $pais;
     public $noExterior;
     public $productosFavoritos;
     public $beneficioElegido;
@@ -31,6 +30,8 @@ class Venta {
         $codigoPostal,
         $calle,
         $colonia,
+        $ciudad,
+        $estado,
         $noExterior,
         $productosFavoritos,
         $beneficioElegido
@@ -46,6 +47,8 @@ class Venta {
         $this->codigoPostal = $codigoPostal;
         $this->calle = $calle;
         $this->colonia = $colonia;
+        $this->ciudad = $ciudad;
+        $this->estado = $estado;
         $this->noExterior = $noExterior;
         $this->productosFavoritos = $productosFavoritos;
         $this->beneficioElegido = $beneficioElegido;

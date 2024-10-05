@@ -28,7 +28,6 @@ class VentaController {
             $data['colonia'],
             $data['ciudad'],
             $data['estado'],
-            $data['pais'],
             $data['noExterior'],
             $data['productosFavoritos'],
             $data['beneficioElegido']
